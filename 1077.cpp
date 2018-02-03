@@ -42,10 +42,10 @@ int main() {
 	}
 	Reverse(subStr,strlen(subStr));
 	if (subStr[0] == '\0') {
-		printf("nai");
+		cout << "nai";
 	}
 	else {
-		printf("%s", subStr);
+		cout << subStr;
 	}
 	system("pause");
 	return 0;

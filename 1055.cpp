@@ -1,3 +1,4 @@
+// 运行超时
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstdlib>
@@ -72,6 +73,7 @@ int main() {
 		scanf("%s %d %d", p[i].name, &p[i].age, &p[i].worth);
 	}
 	sort(p, p + n, cmp_age);
+	People p2[100010];
 	for (int i = 0; i < k; i++) {
 		//scanf("%d %d %d", &query[i][0], &query[i][1], &query[i][2]);
 		int m, amin, amax;
@@ -79,7 +81,7 @@ int main() {
 		scanf("%d %d %d", &m, &amin, &amax);
 		printf("Case #%d:\n", i + 1);
 		int head = n - 1, end = 0;
-		/*for (int j = 0; j < n; j++) {
+		for (int j = 0; j < n; j++) {
 			if (m == 0) {
 				break;
 			}
@@ -106,33 +108,35 @@ int main() {
 					break;
 				}
 			}
-		}*/
+		}
 
-		head = binary_find1(0, n-1, amin);
+		/*head = binary_find1(0, n-1, amin);
 		end = binary_find2(head, n-1, amax);
 		if (p[end].age > amax) {
 			end--;
-		}
+		}*/
 		int temp = head;
 		if (head >= end) {
 			printf("None\n");
 			continue;
 		}
-		sort(p + head, p + end + 1, cmp);
+		for (int i = head; i < end + 1; i++) {
+			p2[i] = p[i];
+		}
+		sort(p2 + head, p2 + end + 1, cmp);
 		for (; head <= end && m; head++) {
 			flag = 1;
-			printf("%s %d %d\n", p[head].name, p[head].age, p[head].worth);
+			printf("%s %d %d\n", p2[head].name, p2[head].age, p2[head].worth);
 			m--;
 		}
-		sort(p + temp, p + end + 1, cmp_age);
 		if (!flag) {
 			printf("None\n");
 		}
 	}
 
-
-
 	system("pause");
 	return 0;
 }
+
+
 

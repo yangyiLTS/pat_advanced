@@ -38,38 +38,6 @@ bool cmp(People a, People b) {
 	}
 }
 
-//int binary_find1(const int a, const int b, const int val) {
-//	int c = (a + b) / 2;
-//	if (b - a == 1) {
-//		return a;
-//	}
-//	/*if (p[c].age == val) {
-//		return c;
-//	}*/
-//	if (p[c].age >= val) {
-//		binary_find1(a, c, val);
-//	}
-//	else if (p[c].age < val) {
-//		binary_find1(c, b, val);
-//	}
-//}
-//
-//int binary_find2(const int a, const int b, const int val) {
-//	int c = (a + b) / 2;
-//	if (b - a == 1) {
-//		return b;
-//	}
-//	/*if (p[c].age == val) {
-//	return c;
-//	}*/
-//	if (p[c].age > val) {
-//		binary_find2(a, c, val);
-//	}
-//	else if (p[c].age <= val) {
-//		binary_find2(c, b, val);
-//	}
-//}
-
 struct Age {
 	int head = -1;
 	int end = -1;
@@ -103,7 +71,8 @@ int main() {
 			break;
 		}
 	}
-	People p2[100010];
+	sort(p , p + n, cmp);
+	/*People p2[100010];
 	int now_age = 0;
 	for (int i = 0; i < n; i++) {
 		if (p[i].age > now_age) {
@@ -140,14 +109,13 @@ int main() {
 			age_list[i].head = age_list[next_age].head;
 		}
 	}
-
+	*/
 	for (int i = 0; i < k; i++) {
-		//scanf("%d %d %d", &query[i][0], &query[i][1], &query[i][2]);
 		int m, amin, amax;
 		bool flag = 0;
 		scanf("%d %d %d", &m, &amin, &amax);
 		printf("Case #%d:\n", i + 1);
-		int head = n - 1, end = 0;
+		//int head = n - 1, end = 0;
 		/*for (int j = 0; j < n; j++) {
 			if (m == 0) {
 				break;
@@ -183,18 +151,18 @@ int main() {
 			end--;
 		}*/
 
-		head = age_list[amin].head;
+		//head = age_list[amin].head;
 		/*while (head == -1 && amin <= 200) {
 			amin++;
 			head = age_list[amin].head;
 		}*/
-		end = age_list[amax].end;
+		//end = age_list[amax].end;
 		/*while (end == -1 && amax > 1) {
 			amax--;
 			end = age_list[amax].end;
 		}*/
 
-		int temp = head;
+		/*int temp = head;
 		if (head >= end) {
 			printf("None\n");
 			continue;
@@ -209,6 +177,16 @@ int main() {
 			m--;
 		}
 		if (!flag) {
+			printf("None\n");
+		}*/
+		int pcount = 0;
+		for (int i = 0; i < n&&pcount < m; i++) {
+			if (p[i].age >= amin && p[i].age <= amax) {
+				printf("%s %d %d\n", p[i].name, p[i].age, p[i].worth);
+				pcount++;
+			}
+		}
+		if (pcount == 0) {
 			printf("None\n");
 		}
 	}
